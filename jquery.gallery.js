@@ -26,8 +26,8 @@ if ( typeof Object.create !== 'function' ) {
       self.$thumbs    = self.createThumbs().find('img');
 
 
-      self.setCurrent( self.config.initialImg );
       self.setup();
+      self.setCurrent( self.config.initialImg );
       self.events();
     },
 
