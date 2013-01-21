@@ -27,16 +27,25 @@ if ( typeof Object.create !== 'function' ) {
 
 
       self.setCurrent( self.config.initialImg );
+      self.setup();
       self.events();
     },
 
+
+    setup: function() {
+      var self = this;
+
+      $.each( self.$imgs, function(i) {
+        $(this).attr({'id': 'gallery-img-'+ i +'', 'role': 'tabpanel', 'aria-labelledby': 'gallery-control-'+ i +''})
+      });
+    },
 
     createThumbs: function() {
       var self = this;
       var frag = '';
 
-      self.$imgs.each( function() {
-        frag += '<li><img src="'+ this.src +'" width="'+ self.config.thumbWidth +'" height="'+ self.config.thumbHeight +'"></li>';
+      $.each( self.$imgs, function(i) {
+        frag += '<li><img src="'+ this.src +'" width="'+ self.config.thumbWidth +'" height="'+ self.config.thumbHeight +'" id="gallery-control-'+ i +'" aria-controls="gallery-img-'+ i +'" role="tab"></li>';
       });
 
       return $('<ul>', {'class': 'gallery-thumbs'}).insertAfter(self.$el).append(frag);
@@ -46,8 +55,8 @@ if ( typeof Object.create !== 'function' ) {
     setCurrent: function( img_num ) {
       var self = this;
 
-      self.$imgs.removeAttr('data-current').eq(img_num).attr('data-current', '');
-      self.$thumbs.removeAttr('data-thumb-current').eq(img_num).attr('data-thumb-current', '');
+      self.$imgs.attr({'aria-hidden': 'true'}).eq(img_num).attr({'aria-hidden': 'false'});
+      self.$thumbs.attr({'tabindex': '-1', 'aria-selected': 'false'}).eq(img_num).attr({'tabindex': '0', 'aria-selected': 'true'});
     },
 
 

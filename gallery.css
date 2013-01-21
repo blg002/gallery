@@ -2,6 +2,6 @@
   display: none
 }
 
-.js .gallery img[data-current] {
+.js .gallery img[aria-hidden=false] {
   display: block;
 }
