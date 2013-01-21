@@ -1,0 +1,7 @@
+.js .gallery img {
+  display: none
+}
+
+.js .gallery img[data-current] {
+  display: block;
+}
