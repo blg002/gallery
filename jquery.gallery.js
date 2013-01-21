@@ -36,7 +36,11 @@ if ( typeof Object.create !== 'function' ) {
       var self = this;
 
       $.each( self.$imgs, function(i) {
-        $(this).attr({'id': 'gallery-img-'+ i +'', 'role': 'tabpanel', 'aria-labelledby': 'gallery-control-'+ i +''})
+        $(this).attr({
+          'id': 'gallery-img-'+ i +'',
+          'role': 'tabpanel',
+          'aria-labelledby': 'gallery-control-'+ i +''
+        })
       });
     },
 
@@ -55,8 +59,19 @@ if ( typeof Object.create !== 'function' ) {
     setCurrent: function( img_num ) {
       var self = this;
 
-      self.$imgs.attr({'aria-hidden': 'true'}).eq(img_num).attr({'aria-hidden': 'false'});
-      self.$thumbs.attr({'tabindex': '-1', 'aria-selected': 'false'}).eq(img_num).attr({'tabindex': '0', 'aria-selected': 'true'});
+      self.$imgs.attr({
+        'aria-hidden': 'true'
+      }).eq(img_num).attr({
+        'aria-hidden': 'false'
+      });
+
+      self.$thumbs.attr({
+        'tabindex': '-1',
+        'aria-selected': 'false'
+      }).eq(img_num).attr({
+        'tabindex': '0',
+        'aria-selected': 'true'
+      });
     },
 
 
